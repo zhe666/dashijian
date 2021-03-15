@@ -15,7 +15,6 @@ $(function () {
             /^[\S]{6,16}$/,
             "密码必须6-16位,且不能输入空格"
         ],
-
         //确认密码规则
         // 选择器必须带空格,选择的是后代中的input,name属性值位password的哪一个标签
         repwd: function (value) {
@@ -26,7 +25,6 @@ $(function () {
             }
         }
     })
-
     $("#form_reg").on("submit", function (e) {
         e.preventDefault()
         $.ajax({
@@ -35,13 +33,11 @@ $(function () {
             data: {
                 username: $(".reg-box [name=username]").val(),
                 password: $(".reg-box [name=password]").val()
-
             },
             success: (res) => {
                 if (res.status != 0) {
                     return alert(res.message)
                 }
-
                 layer.msg("注册成功,请登录", { icon: 1 });
                 $("#link_login").click()//调用登录表单
                 $('#form_reg')[0].reset();//reset重置表单
@@ -58,12 +54,11 @@ $(function () {
                 //校验返回状态
                 console.log(res)
                 if (res.status != 0) {
-                    return layer.mag(res.message)
+                    return layer.msg(res.message)
                 }
                 //保存token,跳转页面
                 localStorage.setItem("token", res.token)
                 location.href = "/index.html" //跳转页面
-
             }
         })
     })
